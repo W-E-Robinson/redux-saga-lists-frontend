@@ -3,7 +3,7 @@ import axios from "axios";
 export const getList(id: string): unknown => {
     try {
         const response = await axios.get(`lists/${id}`);
-        console.log(response);
+        return response.data;
     } catch (error) {
         console.error(error);
     }
