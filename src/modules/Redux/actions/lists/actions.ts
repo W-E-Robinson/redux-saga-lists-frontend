@@ -5,17 +5,18 @@ import {
 	FetchListRequestPayload,
 	FetchListSuccess,
 	FetchListSuccessPayload,
-} from "./actionTypes";
+} from "./types";
 import {
     FETCH_LIST_REQUEST,
     FETCH_LIST_SUCCESS,
     FETCH_LIST_FAILURE,
-} from "./types";
+} from "./actionTypes";
 
 export const fetchListRequest = (
-    payload: FetchListRequestPyaload,
+    payload: FetchListRequestPayload,
 ): FetchListRequest => ({
     type: FETCH_LIST_REQUEST,
+    payload,
 });
 
 export const fetchListSuccess = (

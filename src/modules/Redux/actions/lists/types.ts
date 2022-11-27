@@ -1,3 +1,9 @@
+import {
+    FETCH_LIST_REQUEST,
+    FETCH_LIST_SUCCESS,
+    FETCH_LIST_FAILURE,
+} from "./actionTypes";
+
 interface ListItem {
     id: number;
     value: string;
@@ -37,7 +43,7 @@ export type FetchListFailure = {
     payload: FetchListFailurePayload;
 };
 
-export type LissActions =
+export type ListActions =
     | FetchListRequest
     | FetchListSuccess
     | FetchListFailure
