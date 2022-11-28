@@ -8,15 +8,21 @@ import {
 import { FETCH_LIST_REQUEST } from "../../actions/lists/actionTypes";
 
 function* fetchListSaga(action) {
-    const data = yield call(getList, action.id);
-
-    yield put({
-        type: 'FETCH_LIST_SUCCESS',
-        data,
-    });
+    try {
+        const data = yield call(getList, action.payload.id);
+        yield put(fetchListSuccess({
+            list: response.data;
+        })
+    } catch (error) {
+        yield put(fetchListFailure({
+            error = error.response ? error.reponse.error : error.message
+        })
+    }
 }
 
 export function* listsSaga() {
-    yield all([takeLatest(FETCH_LIST_REQUEST, fetchListSaga)]);
+    yield all([
+        takeLatest(FETCH_LIST_REQUEST, fetchListSaga),
+    ]);
 }
 
