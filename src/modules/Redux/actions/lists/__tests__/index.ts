@@ -13,9 +13,9 @@ describe("Actions functions testing", () => {
 
     for (const func of functions) {
         test("function test", () => {
-            const func = i("");
-            expect(func.type).toBeTruthy();
-        }
+            const f = func("");
+            expect(f.type).toBeTruthy();
+        });
     }
-};
+});
 
