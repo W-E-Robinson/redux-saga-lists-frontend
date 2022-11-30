@@ -10,13 +10,17 @@ import { getList } from "../../apis/lists";
 function* fetchListSaga(action) {
     try {
         const response = yield call(getList, action.payload.id);
-        yield put(fetchListSuccess({
-            list: response.data;
-        })
+        yield put(
+            fetchListSuccess({
+                list: response.data,
+            }),
+        )   
     } catch (error) {
-        yield put(fetchListFailure({
-            error: error.response ? error.reponse.error : error.message
-        })
+        yield put(
+            fetchListFailure({
+                error: error.response ? error.reponse.error : error.message
+            }),
+        )
     }
 }
 
