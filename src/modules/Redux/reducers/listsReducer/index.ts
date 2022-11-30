@@ -1,14 +1,14 @@
 import {
-    FETCH_LIST_REUEST,
+    FETCH_LIST_REQUEST,
     FETCH_LIST_SUCCESS,
     FETCH_LIST_FAILURE,
-} from "../../action/lists/actionTypes";
+} from "../../actions/lists/actionTypes";
 import {
     ListActions,
     ListState,
 } from "../../actions/lists/types";
 
-const initialState: ListsState = {
+const initialState: ListState = {
     pending: false,
     error: null,
     list: [],
