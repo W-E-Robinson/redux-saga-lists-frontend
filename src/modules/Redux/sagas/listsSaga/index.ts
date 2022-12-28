@@ -1,8 +1,8 @@
 import { put, call, takeLatest, all } from "redux-saga/effects";
 
 import {
-    fetchListSuccess,
     fetchListFailure,
+    fetchListSuccess,
 } from "../../actions/lists/actions";
 import { FETCH_LIST_REQUEST } from "../../actions/lists/actionTypes";
 import { getList } from "../../apis/lists";
