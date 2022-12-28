@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
+
+import { AppState } from "./modules/Redux/reducers/rootReducer";
 import { fetchListRequest } from "./modules/Redux/actions/lists/actions";
 
-import './App.css';
+import "./App.css";
 
 export const App = () => {
     const reduxDispatch = useDispatch();
     const list = useSelector(
-        state => state.list,
+        (state: AppState) => state.lists.list,
     );
 
     useEffect(() => {
