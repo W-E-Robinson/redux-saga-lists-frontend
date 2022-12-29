@@ -5,10 +5,10 @@ import {
     LISTS_URL,
 } from "../../../../constants/index";
 
-export const getList = async (id: string) => {
+export const getList = async () => {
     const url = BASE_URL + LISTS_URL;
     try {
-        const response = await axios.get(url + id);
+        const response = await axios.get(url);
         return response.data;
     } catch (error) {
         console.error(error);

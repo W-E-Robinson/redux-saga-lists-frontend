@@ -2,7 +2,6 @@ import {
 	FetchListFailure,
 	FetchListFailurePayload,
 	FetchListRequest,
-	FetchListRequestPayload,
 	FetchListSuccess,
 	FetchListSuccessPayload,
 } from "./types";
@@ -12,11 +11,8 @@ import {
     FETCH_LIST_FAILURE,
 } from "./actionTypes";
 
-export const fetchListRequest = (
-    payload: FetchListRequestPayload,
-): FetchListRequest => ({
+export const fetchListRequest = (): FetchListRequest => ({
     type: FETCH_LIST_REQUEST,
-    payload,
 });
 
 export const fetchListSuccess = (

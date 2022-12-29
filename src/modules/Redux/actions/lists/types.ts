@@ -16,10 +16,6 @@ export interface ListState {
     error: string | null;
 }
 
-export interface FetchListRequestPayload {
-    id: number;
-}
-
 export interface FetchListSuccessPayload {
     list: ListItem[];
 }
@@ -30,7 +26,6 @@ export interface FetchListFailurePayload {
 
 export type FetchListRequest = {
     type: typeof FETCH_LIST_REQUEST;
-    payload: FetchListRequestPayload;
 }
 
 export type FetchListSuccess = {

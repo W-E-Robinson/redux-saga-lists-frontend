@@ -9,7 +9,7 @@ import { getList } from "../../apis/lists";
 
 function* fetchListSaga(action) {
     try {
-        const response = yield call(getList, action.payload.id);
+        const response = yield call(getList);
         yield put(
             fetchListSuccess({
                 list: response.data,
