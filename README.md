@@ -17,3 +17,4 @@
 #### DELETE_SUCCESS
 #### DELETE_FAILURE
 #### SET
+#### RESET

@@ -12,8 +12,8 @@ interface ListItem {
 
 export interface ListState {
     pending: boolean;
-    list: ListItem[];
     error: string | null;
+    list: ListItem[];
 }
 
 export interface FetchListSuccessPayload {
