@@ -2,7 +2,7 @@ import {
     fetchListRequest,
     fetchListSuccess,
     fetchListFailure,
-} from "../actions.ts";
+} from "../actions";
 
 describe("Actions functions testing", () => {
     const functions = [

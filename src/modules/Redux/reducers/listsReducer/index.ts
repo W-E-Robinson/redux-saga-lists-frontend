@@ -14,7 +14,7 @@ export const initialState: ListState = {
     list: [],
 };
 
-export const listsReducer = (state: ListState = initialState, action: ListActions) => {
+export const listsReducer = (state = initialState, action: ListActions) => {
     switch (action.type) {
         case FETCH_LIST_REQUEST:
             return {
@@ -40,3 +40,4 @@ export const listsReducer = (state: ListState = initialState, action: ListAction
             };
     }
 }
+
