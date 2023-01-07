@@ -8,13 +8,13 @@ import {
     ListState,
 } from "../../actions/lists/types";
 
-const initialState: ListState = {
+export const initialState: ListState = {
     pending: false,
     error: null,
     list: [],
 };
 
-export default (state = initialState, action: ListActions) => {
+export const listsReducer = (state: ListState = initialState, action: ListActions) => {
     switch (action.type) {
         case FETCH_LIST_REQUEST:
             return {
@@ -40,4 +40,3 @@ export default (state = initialState, action: ListActions) => {
             };
     }
 }
-
