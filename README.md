@@ -18,3 +18,4 @@
 #### DELETE_FAILURE
 #### SET
 #### RESET
+#### RESET CHOSEN
