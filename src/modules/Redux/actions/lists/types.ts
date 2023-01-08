@@ -68,6 +68,34 @@ export type ToggleCompletionFailure = {
     payload: ToggleCompletionFailurePayload;
 };
 
+export interface AddItemRequestPayload {
+    id: string;
+    value: string;
+}
+
+export interface AddItemSuccessPayload {
+    list: ListItem[];
+}
+
+export interface AddItemFailurePayload {
+    error: string;
+}
+
+export type AddItemRequest = {
+    type: typeof TOGGLE_COMPLETION_REQUEST;
+    payload: AddItemSuccessPayload;
+}
+
+export type AddItemSuccess = {
+    type: typeof TOGGLE_COMPLETION_SUCCESS;
+    payload: AddItemSuccessPayload;
+};
+
+export type AddItemFailure = {
+    type: typeof TOGGLE_COMPLETION_FAILURE;
+    payload: AddItemFailurePayload;
+};
+
 export type ListActions =
     | FetchListRequest
     | FetchListSuccess
@@ -75,3 +103,6 @@ export type ListActions =
     | ToggleCompletionRequest
     | ToggleCompletionSuccess
     | ToggleCompletionFailure
+    | AddItemRequest
+    | AddItemSuccess
+    | AddItemFailure
