@@ -4,14 +4,20 @@ import {
 	FetchListRequest,
 	FetchListSuccess,
 	FetchListSuccessPayload,
-    ToggleCompletionItem,
-    ToggleCompletionItemPayload,
+	ToggleCompletionFailure,
+	ToggleCompletionFailurePayload,
+	ToggleCompletionRequest,
+	ToggleCompletionRequestPayload,
+	ToggleCompletionSuccess,
+	ToggleCompletionSuccessPayload,
 } from "./types";
 import {
     FETCH_LIST_REQUEST,
     FETCH_LIST_SUCCESS,
     FETCH_LIST_FAILURE,
-    TOGGLE_COMPLETION_ITEM,
+    TOGGLE_COMPLETION_REQUEST,
+    TOGGLE_COMPLETION_SUCCESS,
+    TOGGLE_COMPLETION_FAILURE,
 } from "./actionTypes";
 
 export const fetchListRequest = (): FetchListRequest => ({
@@ -32,9 +38,23 @@ export const fetchListFailure = (
     payload,
 });
 
-export const fetchListSuccess = (
-    payload: FetchListSuccessPayload,
-): FetchListSuccess => ({
-    type: FETCH_LIST_SUCCESS,
+export const toggleCompletionRequest = (
+    payload: ToggleCompletionRequestPayload,
+): ToggleCompletionRequest => ({
+    type: TOGGLE_COMPLETION_REQUEST,
+    payload,
+});
+
+export const toggleCompletionSuccess = (
+    payload: ToggleCompletionSuccessPayload,
+): ToggleCompletionSuccess => ({
+    type: TOGGLE_COMPLETION_SUCCESS,
+    payload,
+});
+
+export const toggleCompletionFailure = (
+    payload: ToggleCompletionFailurePayload,
+): ToggleCompletionFailure => ({
+    type: TOGGLE_COMPLETION_FAILURE,
     payload,
 });

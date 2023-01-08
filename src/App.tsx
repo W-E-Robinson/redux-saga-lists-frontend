@@ -26,7 +26,7 @@ export const App = () => {
 
     const completeItem = (index: number) => {
         const itemId: number = list[index].id;
-        toggleCompletionRequest(itemId);
+        reduxDispatch(toggleCompletionRequest(itemId));
     };
 
     const deleteItem = (index: number) => {
@@ -45,9 +45,8 @@ export const App = () => {
             <h1>redux-saga</h1>
             {list.map((item, index) => {
                 return <div key={index}>
-                    <h2>{item.value}</h2>
+                    <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
                     <button onClick={() => completeItem(index)}>toggle completion</button>
-                    <h4>line through ad</h4>
                     <button onClick={() => deleteItem(index)}>delete</button>
                 </div>
             })}
