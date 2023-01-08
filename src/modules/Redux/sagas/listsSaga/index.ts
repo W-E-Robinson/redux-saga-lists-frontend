@@ -13,7 +13,7 @@ import {
 import {
     getList,
     patchList,
-} from "../../apis/lists";
+} from "../../apis/lists" 
 
 function* fetchListSaga() {
     try {
