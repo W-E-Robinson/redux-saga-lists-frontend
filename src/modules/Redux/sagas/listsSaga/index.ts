@@ -7,7 +7,7 @@ import {
 import { FETCH_LIST_REQUEST } from "../../actions/lists/actionTypes";
 import { getList } from "../../apis/lists";
 
-function* fetchListSaga(action) {
+function* fetchListSaga() {
     try {
         const response = yield call(getList);
         yield put(
