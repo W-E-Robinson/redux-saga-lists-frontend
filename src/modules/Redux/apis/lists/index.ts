@@ -14,3 +14,14 @@ export const getList = async () => {
         console.error(error);
     }
 }
+
+export const patchList = async (id: string) => {
+    const url = BASE_URL + LISTS_URL + "/" + id;
+    try {
+        const response = await axios.patch(url);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+

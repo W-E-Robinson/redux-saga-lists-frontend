@@ -2,6 +2,9 @@ import {
     FETCH_LIST_REQUEST,
     FETCH_LIST_SUCCESS,
     FETCH_LIST_FAILURE,
+    TOGGLE_COMPLETION_REQUEST,
+    TOGGLE_COMPLETION_SUCCESS,
+    TOGGLE_COMPLETION_FAILURE,
 } from "./actionTypes";
 
 interface ListItem {
@@ -38,7 +41,37 @@ export type FetchListFailure = {
     payload: FetchListFailurePayload;
 };
 
+export interface ToggleCompletionRequestPayload {
+    id: string;
+}
+
+export interface ToggleCompletionSuccessPayload {
+    list: ListItem[];
+}
+
+export interface ToggleCompletionFailurePayload {
+    error: string;
+}
+
+export type ToggleCompletionRequest = {
+    type: typeof TOGGLE_COMPLETION_REQUEST;
+    payload: ToggleCompletionSuccessPayload;
+}
+
+export type ToggleCompletionSuccess = {
+    type: typeof TOGGLE_COMPLETION_SUCCESS;
+    payload: ToggleCompletionSuccessPayload;
+};
+
+export type ToggleCompletionFailure = {
+    type: typeof TOGGLE_COMPLETION_FAILURE;
+    payload: ToggleCompletionFailurePayload;
+};
+
 export type ListActions =
     | FetchListRequest
     | FetchListSuccess
     | FetchListFailure
+    | ToggleCompletionRequest
+    | ToggleCompletionSuccess
+    | ToggleCompletionFailure

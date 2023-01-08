@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppState } from "./modules/Redux/reducers/rootReducer";
 import {
     fetchListRequest,
-    //completeItemRequest,
+    toggleCompletionRequest,
     //deleteItemRequest,
     //addItemRequest,
 } from "./modules/Redux/actions/lists/actions";
@@ -25,9 +25,8 @@ export const App = () => {
     }, [reduxDispatch]);
 
     const completeItem = (index: number) => {
-        console.info("complete");
-        console.info(index);
-        //deleteItemRequest(index);
+        const itemId: number = list[index].id;
+        reduxDispatch(toggleCompletionRequest(itemId));
     };
 
     const deleteItem = (index: number) => {
@@ -46,8 +45,8 @@ export const App = () => {
             <h1>redux-saga</h1>
             {list.map((item, index) => {
                 return <div key={index}>
-                    <h2>{item.value}</h2>
-                    <button onClick={() => completeItem(index)}>complete</button>
+                    <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
+                    <button onClick={() => completeItem(index)}>toggle completion</button>
                     <button onClick={() => deleteItem(index)}>delete</button>
                 </div>
             })}
