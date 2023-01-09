@@ -27,12 +27,6 @@ const mockData = [
     },
 ];
 
-const mockAction = {
-    payload: { 
-        id: 1,
-    },
-};
-
 describe("#1 fetchListSaga testing", () => {
     function* mockSaga(api) {
         const action = yield take(FETCH_LIST_REQUEST);
@@ -59,5 +53,23 @@ describe("#1 fetchListSaga testing", () => {
                 payload: "mockResource",
             })
             .run();
+    });
+
+    test("#2 successful response", () => {
+        const response = {
+            message: "List successfully returned",
+            data: mockData,
+        };
+
+        const generator = getList();
+
+        expect(generator.next().value).toEqual(call(
+            getList,
+        ));
+        expect(generator.next(response).value).toEqual(put(
+            fetchListSuccess({
+                list: [mockData]
+            })
+        ));
     });
 });
