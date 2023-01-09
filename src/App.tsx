@@ -7,7 +7,7 @@ import {
     fetchListRequest,
     toggleCompletionRequest,
     //deleteItemRequest,
-    //addItemRequest,
+    addItemRequest,
 } from "./modules/Redux/actions/lists/actions";
 
 import "./App.css";
@@ -36,8 +36,8 @@ export const App = () => {
     };
 
     const addItem = () => {
-        console.info("add item");
-        //postItemRequest(value);
+        const itemId: number = list[index].id;
+        reduxDispatch(addItemRequest(itemId, value));
     };
   
     return (
