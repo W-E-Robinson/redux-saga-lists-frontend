@@ -42,7 +42,7 @@ export type FetchListFailure = {
 };
 
 export interface ToggleCompletionRequestPayload {
-    id: string;
+    id: number;
 }
 
 export interface ToggleCompletionSuccessPayload {
@@ -68,33 +68,33 @@ export type ToggleCompletionFailure = {
     payload: ToggleCompletionFailurePayload;
 };
 
-export interface AddItemRequestPayload {
-    id: string;
-    value: string;
-}
-
-export interface AddItemSuccessPayload {
-    list: ListItem[];
-}
-
-export interface AddItemFailurePayload {
-    error: string;
-}
-
-export type AddItemRequest = {
-    type: typeof TOGGLE_COMPLETION_REQUEST;
-    payload: AddItemSuccessPayload;
-}
-
-export type AddItemSuccess = {
-    type: typeof TOGGLE_COMPLETION_SUCCESS;
-    payload: AddItemSuccessPayload;
-};
-
-export type AddItemFailure = {
-    type: typeof TOGGLE_COMPLETION_FAILURE;
-    payload: AddItemFailurePayload;
-};
+//export interface AddItemRequestPayload {
+//    id: string;
+//    value: string;
+//}
+//
+//export interface AddItemSuccessPayload {
+//    list: ListItem[];
+//}
+//
+//export interface AddItemFailurePayload {
+//    error: string;
+//}
+//
+//export type AddItemRequest = {
+//    type: typeof ADD_ITEM_REQUEST;
+//    payload: AddItemSuccessPayload;
+//}
+//
+//export type AddItemSuccess = {
+//    type: typeof ADD_ITEM_SUCCESS;
+//    payload: AddItemSuccessPayload;
+//};
+//
+//export type AddItemFailure = {
+//    type: typeof ADD_ITEM_FAILURE;
+//    payload: AddItemFailurePayload;
+//};
 
 export type ListActions =
     | FetchListRequest
