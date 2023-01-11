@@ -7,7 +7,7 @@ import {
     TOGGLE_COMPLETION_FAILURE,
 } from "./actionTypes";
 
-interface ListItem {
+export interface ListItem {
     id: number;
     value: string;
     completed: boolean;
