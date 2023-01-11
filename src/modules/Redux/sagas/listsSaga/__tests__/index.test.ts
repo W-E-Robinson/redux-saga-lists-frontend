@@ -4,7 +4,7 @@ import { expectSaga } from "redux-saga-test-plan";
 import { fetchListSaga } from "../index";
 import {
     fetchListSuccess,
-    fetchListFailure,
+    //fetchListFailure,
 } from "../../../actions/lists/actions";
 import { FETCH_LIST_REQUEST } from "../../../actions/lists/actionTypes";
 import { getList } from "../../../apis/lists";
@@ -61,7 +61,7 @@ describe("#1 fetchListSaga testing", () => {
             data: mockData,
         };
 
-        const generator = getList();
+        const generator = fetchListSaga();
 
         expect(generator.next().value).toEqual(call(
             getList,

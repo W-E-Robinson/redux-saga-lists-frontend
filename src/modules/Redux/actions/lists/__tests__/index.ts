@@ -1,16 +1,18 @@
 import {
     fetchListRequest,
-    fetchListSuccess,
     fetchListFailure,
+    fetchListSuccess,
 } from "../actions";
 
 describe("Actions functions testing", () => {
-    test.each([
-        [fetchListRequest, "FETCH_LIST_REQUEST"],
-        [fetchListSuccess, "FETCH_LIST_SUCCESS"],
-        [fetchListFailure, "FETCH_LIST_FAILURE"],
-    ])("%s action should have type %s", (action, actionType: string) => {
-        expect(action().type).toBe(actionType);
+    test("#1 fetchListRequest", () => {
+        expect(fetchListRequest().type).toBe("FETCH_LIST_REQUEST");
+    });
+    test("#2 fetchListFailure", () => {
+        expect(fetchListFailure({ error: "mock error" }).type).toBe("FETCH_LIST_FAILURE");
+    });
+    test("#3 fetchListSuccess", () => {
+        expect(fetchListSuccess({ list: [{ id: 1, value: "mock value", completed: true }] }).type).toBe("FETCH_LIST_SUCCESS");
     });
 });
 

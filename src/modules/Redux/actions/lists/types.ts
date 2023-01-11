@@ -55,7 +55,7 @@ export interface ToggleCompletionFailurePayload {
 
 export type ToggleCompletionRequest = {
     type: typeof TOGGLE_COMPLETION_REQUEST;
-    payload: ToggleCompletionSuccessPayload;
+    payload: ToggleCompletionRequestPayload;
 }
 
 export type ToggleCompletionSuccess = {
@@ -103,6 +103,6 @@ export type ListActions =
     | ToggleCompletionRequest
     | ToggleCompletionSuccess
     | ToggleCompletionFailure
-    | AddItemRequest
-    | AddItemSuccess
-    | AddItemFailure
+    //| AddItemRequest
+    //| AddItemSuccess
+    //| AddItemFailure
