@@ -11,8 +11,9 @@ import {
 
 describe("listReducer testing", () => {
     test("#1 FETCH_LIST_REQUEST", () => {
-        const mockAction = { type: FETCH_LIST_REQUEST }; 
-        const updatedState = listsReducer(initialState, mockAction); 
+        const mockAction = { payload: { type: FETCH_LIST_REQUEST }}; 
+        //const mockAction = { type: FETCH_LIST_REQUEST }; 
+        const updatedState = listsReducer(initialState, mockAction.payload); 
 
         expect(updatedState.pending).toBe(true);
         expect(updatedState.error).toBe(null);
