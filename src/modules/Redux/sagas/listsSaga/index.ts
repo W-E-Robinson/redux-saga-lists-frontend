@@ -15,7 +15,7 @@ import {
     patchList,
 } from "../../apis/lists" 
 
-function* fetchListSaga() {
+export function* fetchListSaga() {
     try {
         const response = yield call(getList);
         yield put(

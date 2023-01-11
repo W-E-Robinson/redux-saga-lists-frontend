@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,7 +7,7 @@ import {
     fetchListRequest,
     toggleCompletionRequest,
     //deleteItemRequest,
-    addItemRequest,
+    //addItemRequest,
 } from "./modules/Redux/actions/lists/actions";
 
 import "./App.css";
@@ -35,9 +35,10 @@ export const App = () => {
         //patchItemRequest(index, value);
     };
 
-    const addItem = () => {
+    const addItem = (index: number) => {
         const itemId: number = list[index].id;
-        reduxDispatch(addItemRequest(itemId, value));
+        //reduxDispatch(addItemRequest(itemId, value));
+        console.log(itemId);
     };
   
     return (
