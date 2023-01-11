@@ -14,10 +14,16 @@ import {
     getList,
     patchList,
 } from "../../apis/lists" 
+import { ListItem } from "../../actions/lists/types";
+
+interface Response {
+    data: ListItem[];
+    message: string;
+}
 
 export function* fetchListSaga() {
     try {
-        const response = yield call(getList);
+        const response: Response = yield call(getList);
         yield put(
             fetchListSuccess({
                 list: response.data,
@@ -32,9 +38,10 @@ export function* fetchListSaga() {
     }
 }
 
-function* toggleCompletionSaga(id) {
+function* toggleCompletionSaga(id: number) {
     try {
-        const response = yield call(patchList, id.payload);
+        const response: Response = yield call(patchList, id.payload);
+        //const response: Response = yield call(patchList, id);
         yield put(
             toggleCompletionSuccess({
                 list: response.data,
