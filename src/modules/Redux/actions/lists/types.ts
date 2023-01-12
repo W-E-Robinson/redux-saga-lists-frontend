@@ -5,6 +5,9 @@ import {
     TOGGLE_COMPLETION_REQUEST,
     TOGGLE_COMPLETION_SUCCESS,
     TOGGLE_COMPLETION_FAILURE,
+    ADD_ITEM_REQUEST,
+    ADD_ITEM_SUCCESS,
+    ADD_ITEM_FAILURE,
 } from "./actionTypes";
 
 export interface ListItem {
@@ -68,33 +71,33 @@ export type ToggleCompletionFailure = {
     payload: ToggleCompletionFailurePayload;
 };
 
-//export interface AddItemRequestPayload {
-//    id: string;
-//    value: string;
-//}
-//
-//export interface AddItemSuccessPayload {
-//    list: ListItem[];
-//}
-//
-//export interface AddItemFailurePayload {
-//    error: string;
-//}
-//
-//export type AddItemRequest = {
-//    type: typeof ADD_ITEM_REQUEST;
-//    payload: AddItemSuccessPayload;
-//}
-//
-//export type AddItemSuccess = {
-//    type: typeof ADD_ITEM_SUCCESS;
-//    payload: AddItemSuccessPayload;
-//};
-//
-//export type AddItemFailure = {
-//    type: typeof ADD_ITEM_FAILURE;
-//    payload: AddItemFailurePayload;
-//};
+export interface AddItemRequestPayload {
+    id: string;
+    value: string;
+}
+
+export interface AddItemSuccessPayload {
+    list: ListItem[];
+}
+
+export interface AddItemFailurePayload {
+    error: string;
+}
+
+export type AddItemRequest = {
+    type: typeof ADD_ITEM_REQUEST;
+    payload: AddItemSuccessPayload;
+}
+
+export type AddItemSuccess = {
+    type: typeof ADD_ITEM_SUCCESS;
+    payload: AddItemSuccessPayload;
+};
+
+export type AddItemFailure = {
+    type: typeof ADD_ITEM_FAILURE;
+    payload: AddItemFailurePayload;
+};
 
 export type ListActions =
     | FetchListRequest
@@ -103,6 +106,6 @@ export type ListActions =
     | ToggleCompletionRequest
     | ToggleCompletionSuccess
     | ToggleCompletionFailure
-    //| AddItemRequest
-    //| AddItemSuccess
-    //| AddItemFailure
+    | AddItemRequest
+    | AddItemSuccess
+    | AddItemFailure

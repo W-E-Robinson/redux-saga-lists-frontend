@@ -15,10 +15,25 @@ export const getList = async () => {
     }
 }
 
-export const patchList = async (id: string) => {
+export const patchList = async (id: number) => {
     const url = BASE_URL + LISTS_URL + "/" + id;
     try {
         const response = await axios.patch(url);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+export const addItem = async (value: string) => {
+    const url = BASE_URL + LISTS_URL;
+    const headers = { value: value };
+    try {
+        const response = await axios.post(url, {
+            headers: {
+                value: value,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error(error);

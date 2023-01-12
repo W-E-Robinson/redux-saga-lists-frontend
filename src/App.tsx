@@ -7,7 +7,7 @@ import {
     fetchListRequest,
     toggleCompletionRequest,
     //deleteItemRequest,
-    //addItemRequest,
+    addItemRequest,
 } from "./modules/Redux/actions/lists/actions";
 
 import "./App.css";
@@ -35,10 +35,9 @@ export const App = () => {
         //patchItemRequest(index, value);
     };
 
-    const addItem = (index: number) => {
-        const itemId: number = list[index].id;
-        //reduxDispatch(addItemRequest(itemId, value));
-        console.log(itemId);
+    const addItem = (event) => {
+        event.preventDefault();
+        reduxDispatch(addItemRequest(newItem));
     };
   
     return (
@@ -57,7 +56,7 @@ export const App = () => {
                 <input
                     type="text"
                     value={newItem}
-                    onChange={e => setNewItem(e.target.value)}
+                    onChange={event => setNewItem(event.target.value)}
                 />
                 </label>
                 <input type="submit" value="Submit" />
