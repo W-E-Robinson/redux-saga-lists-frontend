@@ -5,6 +5,9 @@ import {
     TOGGLE_COMPLETION_REQUEST,
     TOGGLE_COMPLETION_SUCCESS,
     TOGGLE_COMPLETION_FAILURE,
+    ADD_ITEM_REQUEST,
+    ADD_ITEM_SUCCESS,
+    ADD_ITEM_FAILURE,
 } from "./actionTypes";
 
 interface ListItem {
@@ -82,17 +85,17 @@ export interface AddItemFailurePayload {
 }
 
 export type AddItemRequest = {
-    type: typeof TOGGLE_COMPLETION_REQUEST;
+    type: typeof ADD_ITEM_REQUEST;
     payload: AddItemSuccessPayload;
 }
 
 export type AddItemSuccess = {
-    type: typeof TOGGLE_COMPLETION_SUCCESS;
+    type: typeof ADD_ITEM_SUCCESS;
     payload: AddItemSuccessPayload;
 };
 
 export type AddItemFailure = {
-    type: typeof TOGGLE_COMPLETION_FAILURE;
+    type: typeof ADD_ITEM_FAILURE;
     payload: AddItemFailurePayload;
 };
 

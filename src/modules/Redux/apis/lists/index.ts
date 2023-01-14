@@ -25,3 +25,17 @@ export const patchList = async (id: string) => {
     }
 }
 
+export const postItem = async (value: string) => {
+    const url = BASE_URL + LISTS_URL;
+    try {
+        const response = await axios.post(
+            url,
+            { value: value }, 
+        );
+        console.log(response);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+

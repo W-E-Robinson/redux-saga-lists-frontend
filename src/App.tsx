@@ -18,7 +18,7 @@ export const App = () => {
         (state: AppState) => state.lists.list,
     );
     
-    const [newItem, setNewItem] = useState("");
+    const [newItem, setNewItem] = useState<string>("");
 
     useEffect(() => {
         reduxDispatch(fetchListRequest());
@@ -35,31 +35,29 @@ export const App = () => {
         //patchItemRequest(index, value);
     };
 
-    const addItem = () => {
-        const itemId: number = list[index].id;
-        reduxDispatch(addItemRequest(itemId, value));
+    const addItem = (event) => {
+        event.preventDefault();
+        reduxDispatch(addItemRequest(newItem));
+        setNewItem("");
     };
-  
+     
     return (
         <>
             <h1>redux-saga</h1>
             {list.map((item, index) => {
                 return <div key={index}>
-                    <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
+                    <h2>{item.value.payload} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
                     <button onClick={() => completeItem(index)}>toggle completion</button>
                     <button onClick={() => deleteItem(index)}>delete</button>
                 </div>
             })}
             <form onSubmit={addItem}>
-                <label>
-                    Add Item:
                 <input
                     type="text"
                     value={newItem}
                     onChange={e => setNewItem(e.target.value)}
                 />
-                </label>
-                <input type="submit" value="Submit" />
+                <button type="submit">Add New Item</button>
             </form>
         </>
     );
