@@ -15,7 +15,7 @@ export const getList = async () => {
     }
 }
 
-export const patchList = async (id: string) => {
+export const patchList = async (id: number) => {
     const url = BASE_URL + LISTS_URL + "/" + id;
     try {
         const response = await axios.patch(url);

@@ -9,19 +9,27 @@ import {
     addItemFailure,
 } from "../../actions/lists/actions";
 import {
+    ADD_ITEM_REQUEST,
     FETCH_LIST_REQUEST,
     TOGGLE_COMPLETION_REQUEST,
     ADD_ITEM_REQUEST,
 } from "../../actions/lists/actionTypes";
 import {
+    addItem,
     getList,
     patchList,
     postItem,
 } from "../../apis/lists" 
+import { ListItem } from "../../actions/lists/types";
 
-function* fetchListSaga() {
+interface Response {
+    data: ListItem[];
+    message: string;
+}
+
+export function* fetchListSaga() {
     try {
-        const response = yield call(getList);
+        const response: Response = yield call(getList);
         yield put(
             fetchListSuccess({
                 list: response.data,
@@ -36,9 +44,10 @@ function* fetchListSaga() {
     }
 }
 
-function* toggleCompletionSaga(id) {
+function* toggleCompletionSaga(id: number) {
     try {
-        const response = yield call(patchList, id.payload);
+        const response: Response = yield call(patchList, id.payload);
+        //const response: Response = yield call(patchList, id);
         yield put(
             toggleCompletionSuccess({
                 list: response.data,
@@ -53,7 +62,7 @@ function* toggleCompletionSaga(id) {
     }
 }
 
-function* addItemSaga(value) {
+function* addItemSaga(value: string) {
     try {
         const response = yield call(postItem, value.payload);
         yield put(

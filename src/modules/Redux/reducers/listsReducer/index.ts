@@ -5,6 +5,9 @@ import {
     TOGGLE_COMPLETION_REQUEST,
     TOGGLE_COMPLETION_SUCCESS,
     TOGGLE_COMPLETION_FAILURE,
+    ADD_ITEM_REQUEST,
+    ADD_ITEM_FAILURE,
+    ADD_ITEM_SUCCESS,
 } from "../../actions/lists/actionTypes";
 import {
     ListActions,
@@ -21,10 +24,12 @@ export const listsReducer = (state = initialState, action: ListActions) => {
     switch (action.type) {
         case FETCH_LIST_REQUEST:
         case TOGGLE_COMPLETION_REQUEST:
+        case ADD_ITEM_REQUEST:
             return {
                 ...state,
                 pending: true,
             };
+        case ADD_ITEM_SUCCESS:
         case FETCH_LIST_SUCCESS:
         case TOGGLE_COMPLETION_SUCCESS:
             return {
@@ -34,6 +39,7 @@ export const listsReducer = (state = initialState, action: ListActions) => {
                 list: action.payload.list,
             };
         case FETCH_LIST_FAILURE:
+        case ADD_ITEM_FAILURE:
         case TOGGLE_COMPLETION_FAILURE:
             return {
                 ...state,

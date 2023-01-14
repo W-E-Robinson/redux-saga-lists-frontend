@@ -10,7 +10,7 @@ import {
     ADD_ITEM_FAILURE,
 } from "./actionTypes";
 
-interface ListItem {
+export interface ListItem {
     id: number;
     value: string;
     completed: boolean;
@@ -45,7 +45,7 @@ export type FetchListFailure = {
 };
 
 export interface ToggleCompletionRequestPayload {
-    id: string;
+    id: number;
 }
 
 export interface ToggleCompletionSuccessPayload {

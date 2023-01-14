@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -55,7 +55,7 @@ export const App = () => {
                 <input
                     type="text"
                     value={newItem}
-                    onChange={e => setNewItem(e.target.value)}
+                    onChange={event => setNewItem(event.target.value)}
                 />
                 <button type="submit">Add New Item</button>
             </form>
