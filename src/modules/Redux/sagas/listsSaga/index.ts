@@ -9,13 +9,11 @@ import {
     addItemFailure,
 } from "../../actions/lists/actions";
 import {
-    ADD_ITEM_REQUEST,
     FETCH_LIST_REQUEST,
     TOGGLE_COMPLETION_REQUEST,
     ADD_ITEM_REQUEST,
 } from "../../actions/lists/actionTypes";
 import {
-    addItem,
     getList,
     patchList,
     postItem,
