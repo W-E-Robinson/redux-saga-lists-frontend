@@ -22,7 +22,7 @@ export const App = () => {
 
     useEffect(() => {
         reduxDispatch(fetchListRequest());
-    }, [reduxDispatch]);
+    }, [reduxDispatch, list]); //NOTE: addition of list is a cheap fix?
 
     const completeItem = (index: number) => {
         const itemId: number = list[index].id;
@@ -46,7 +46,7 @@ export const App = () => {
             <h1>redux-saga</h1>
             {list.map((item, index) => {
                 return <div key={index}>
-                    <h2>{item.value.payload} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
+                    <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
                     <button onClick={() => completeItem(index)}>toggle completion</button>
                     <button onClick={() => deleteItem(index)}>delete</button>
                 </div>

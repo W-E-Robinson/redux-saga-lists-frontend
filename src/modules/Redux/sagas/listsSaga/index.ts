@@ -55,7 +55,7 @@ function* toggleCompletionSaga(id) {
 
 function* addItemSaga(value) {
     try {
-        const response = yield call(postItem, value);
+        const response = yield call(postItem, value.payload);
         yield put(
             addItemSuccess({
                 list: response.data,
