@@ -18,11 +18,11 @@ export const App = () => {
         (state: AppState) => state.lists.list,
     );
     
-    const [newItem, setNewItem] = useState("");
+    const [newItem, setNewItem] = useState<string>("");
 
     useEffect(() => {
         reduxDispatch(fetchListRequest());
-    }, [reduxDispatch]);
+    }, [reduxDispatch, list]); //NOTE: addition of list is a cheap fix?
 
     const completeItem = (index: number) => {
         const itemId: number = list[index].id;
@@ -38,8 +38,9 @@ export const App = () => {
     const addItem = (event) => {
         event.preventDefault();
         reduxDispatch(addItemRequest(newItem));
+        setNewItem("");
     };
-  
+     
     return (
         <>
             <h1>redux-saga</h1>
@@ -51,15 +52,12 @@ export const App = () => {
                 </div>
             })}
             <form onSubmit={addItem}>
-                <label>
-                    Add Item:
                 <input
                     type="text"
                     value={newItem}
                     onChange={event => setNewItem(event.target.value)}
                 />
-                </label>
-                <input type="submit" value="Submit" />
+                <button type="submit">Add New Item</button>
             </form>
         </>
     );

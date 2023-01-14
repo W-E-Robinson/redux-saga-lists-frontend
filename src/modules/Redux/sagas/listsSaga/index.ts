@@ -9,14 +9,14 @@ import {
     addItemFailure,
 } from "../../actions/lists/actions";
 import {
-    ADD_ITEM_REQUEST,
     FETCH_LIST_REQUEST,
     TOGGLE_COMPLETION_REQUEST,
+    ADD_ITEM_REQUEST,
 } from "../../actions/lists/actionTypes";
 import {
-    addItem,
     getList,
     patchList,
+    postItem,
 } from "../../apis/lists" 
 import { ListItem } from "../../actions/lists/types";
 
@@ -62,8 +62,7 @@ function* toggleCompletionSaga(id: number) {
 
 function* addItemSaga(value: string) {
     try {
-        const response: Response = yield call(addItem, value);
-        //const response: Response = yield call(patchList, id);
+        const response = yield call(postItem, value.payload);
         yield put(
             addItemSuccess({
                 list: response.data,
