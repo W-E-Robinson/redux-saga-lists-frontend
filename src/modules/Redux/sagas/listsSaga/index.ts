@@ -7,16 +7,20 @@ import {
     toggleCompletionFailure,
     addItemSuccess,
     addItemFailure,
+    deleteItemSuccess,
+    deleteItemFailure,
 } from "../../actions/lists/actions";
 import {
     FETCH_LIST_REQUEST,
     TOGGLE_COMPLETION_REQUEST,
     ADD_ITEM_REQUEST,
+    DELETE_ITEM_REQUEST,
 } from "../../actions/lists/actionTypes";
 import {
     getList,
     patchList,
     postItem,
+    deleteItem,
 } from "../../apis/lists" 
 import { ListItem } from "../../actions/lists/types";
 
@@ -77,11 +81,30 @@ function* addItemSaga(value: string) {
     }
 }
 
+function* deleteItemSaga(id: number) {
+    try {
+        const response: Response = yield call(deleteItem, id.payload);
+        //const response: Response = yield call(patchList, id);
+        yield put(
+            deleteItemSuccess({
+                list: response.data,
+            }),
+        )   
+    } catch (error) {
+        yield put(
+            deleteItemFailure({
+                error: error.response ? error.reponse.error : error.message
+            }),
+        )
+    }
+}
+
 export default function* listsSaga() {
     yield all([
         takeLatest(FETCH_LIST_REQUEST, fetchListSaga),
         takeLatest(TOGGLE_COMPLETION_REQUEST, toggleCompletionSaga),
         takeEvery(ADD_ITEM_REQUEST, addItemSaga),
+        takeEvery(DELETE_ITEM_REQUEST, deleteItemSaga),
     ]);
 }
 

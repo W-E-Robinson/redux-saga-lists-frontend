@@ -16,6 +16,12 @@ import {
 	AddItemRequestPayload,
 	AddItemSuccess,
 	AddItemSuccessPayload,
+	DeleteItemFailure,
+	DeleteItemFailurePayload,
+	DeleteItemRequest,
+	DeleteItemRequestPayload,
+	DeleteItemSuccess,
+	DeleteItemSuccessPayload,
 } from "./types";
 import {
     FETCH_LIST_REQUEST,
@@ -27,6 +33,9 @@ import {
     ADD_ITEM_REQUEST,
     ADD_ITEM_SUCCESS,
     ADD_ITEM_FAILURE,
+    DELETE_ITEM_REQUEST,
+    DELETE_ITEM_SUCCESS,
+    DELETE_ITEM_FAILURE,
 } from "./actionTypes";
 
 export const fetchListRequest = (): FetchListRequest => ({
@@ -86,5 +95,26 @@ export const addItemFailure = (
     payload: AddItemFailurePayload,
 ): AddItemFailure => ({
     type: ADD_ITEM_FAILURE,
+    payload,
+});
+
+export const deleteItemRequest = (
+    payload: DeleteItemRequestPayload,
+): DeleteItemRequest => ({
+    type: DELETE_ITEM_REQUEST,
+    payload,
+});
+
+export const deleteItemSuccess = (
+    payload: DeleteItemSuccessPayload,
+): DeleteItemSuccess => ({
+    type: DELETE_ITEM_SUCCESS,
+    payload,
+});
+
+export const deleteItemFailure = (
+    payload: DeleteItemFailurePayload,
+): DeleteItemFailure => ({
+    type: DELETE_ITEM_FAILURE,
     payload,
 });

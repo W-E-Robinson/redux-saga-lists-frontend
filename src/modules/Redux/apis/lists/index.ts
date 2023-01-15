@@ -39,3 +39,13 @@ export const postItem = async (value: string) => {
     }
 }
 
+export const deleteItem = async (id: number) => {
+    const url = BASE_URL + LISTS_URL + "/" + id;
+    try {
+        const response = await axios.delete(url);
+        return response.data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+

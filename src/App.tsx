@@ -6,7 +6,7 @@ import { AppState } from "./modules/Redux/reducers/rootReducer";
 import {
     fetchListRequest,
     toggleCompletionRequest,
-    //deleteItemRequest,
+    deleteItemRequest,
     addItemRequest,
 } from "./modules/Redux/actions/lists/actions";
 
@@ -22,7 +22,7 @@ export const App = () => {
 
     useEffect(() => {
         reduxDispatch(fetchListRequest());
-    }, [reduxDispatch, list]); //NOTE: addition of list is a cheap fix?
+    }, [reduxDispatch]);
 
     const completeItem = (index: number) => {
         const itemId: number = list[index].id;
@@ -30,9 +30,8 @@ export const App = () => {
     };
 
     const deleteItem = (index: number) => {
-        console.info("delete");
-        console.info(index);
-        //patchItemRequest(index, value);
+        const itemId: number = list[index].id;
+        reduxDispatch(deleteItemRequest(itemId));
     };
 
     const addItem = (event) => {
