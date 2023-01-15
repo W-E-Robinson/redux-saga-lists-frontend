@@ -38,7 +38,7 @@ export const App = () => {
 
     const deleteItem = (index: number): void => {
         const itemId: number = list[index].id;
-        reduxDispatch(deleteItemRequest(itemId));
+        reduxDispatch(deleteItemRequest({ id: itemId }));
     };
 
     const addItem = (event: React.SyntheticEvent): void => {

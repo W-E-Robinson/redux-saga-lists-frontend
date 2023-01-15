@@ -22,7 +22,7 @@ import {
     postItem,
     deleteItem,
 } from "../../apis/lists" 
-import { ListItem, ToggleCompletionRequest } from "../../actions/lists/types";
+import { DeleteItemRequest, ListItem, ToggleCompletionRequest } from "../../actions/lists/types";
 
 interface Response {
     data: ListItem[];
@@ -63,7 +63,7 @@ function* toggleCompletionSaga(action: ToggleCompletionRequest) {
     }
 }
 
-function* addItemSaga(value: string) {
+function* addItemSaga() {
     try {
         const response = yield call(postItem, value.payload);
         yield put(
@@ -80,10 +80,9 @@ function* addItemSaga(value: string) {
     }
 }
 
-function* deleteItemSaga(id: number) {
+function* deleteItemSaga(action: DeleteItemRequest) {
     try {
-        const response: Response = yield call(deleteItem, id.payload);
-        //const response: Response = yield call(patchList, id);
+        const response: Response = yield call(deleteItem, action.payload.id);
         yield put(
             deleteItemSuccess({
                 list: response.data,
