@@ -50,7 +50,7 @@ export const App = () => {
     const nameOrResetList = (event: React.SyntheticEvent): void => {
         event.preventDefault();
         if (listName) {
-            reduxDispatch(resetListProperties(["listName"]));
+            reduxDispatch(resetListProperties({ properties: ["listName"] }));
             setNewListName("");
         } else {
             reduxDispatch(setListProperties({ listName: newListName }));

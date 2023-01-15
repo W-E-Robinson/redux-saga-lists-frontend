@@ -58,12 +58,12 @@ export const listsReducer = (state = initialState, action: ListActions) => {
         case SET_LIST_PROPERTIES:
             return {
                 ...state,
-                listName: action.payload.listName ? action.payload.listName : state.listItem,
+                listName: action.payload.listName ? action.payload.listName : state.listName,
             };
         case RESET_LIST_PROPERTIES:
             return {
                 ...state,
-                listName: action.payload.listName ? "" : state.listItem,
+                listName: action.payload.properties.includes("listName") ? "" : state.listName,
             };
         default:
             return {
