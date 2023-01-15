@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -57,9 +57,10 @@ export const App = () => {
         };
     };
 
-    const listNameOnChange = (event: React.SyntheticEvent): void => {
+    const listNameOnChange = (event: ChangeEvent): void => {
+        const target = event.target as HTMLTextAreaElement;
         if (!listName) {
-            setNewListName(event.target.value);
+            setNewListName(target.value);
         }
     };
      
