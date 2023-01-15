@@ -11,6 +11,8 @@ import {
     deleteItemRequest,
     deleteItemSuccess,
     deleteItemFailure,
+    setListProperties,
+    resetListProperties,
 } from "../actions";
 
 describe("Actions functions testing", () => {
@@ -49,6 +51,12 @@ describe("Actions functions testing", () => {
     });
     test("#12 deleteItemSuccess", () => {
         expect(deleteItemSuccess({ list: [{ id: 1, value: "mock value", completed: true }] }).type).toBe("DELETE_ITEM_SUCCESS");
+    });
+    test("#13 setListProperties", () => {
+        expect(setListProperties({ listItem: "mock value" }).type).toBe("SET_LIST_PROPERTIES");
+    });
+    test("#14 resetListProperties", () => {
+        expect(resetListProperties({ properties: ["listItem"] }).type).toBe("RESET_LIST_PROPERTIES");
     });
 });
 
