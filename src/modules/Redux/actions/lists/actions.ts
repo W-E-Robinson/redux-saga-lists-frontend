@@ -22,6 +22,10 @@ import {
 	DeleteItemRequestPayload,
 	DeleteItemSuccess,
 	DeleteItemSuccessPayload,
+    SetItemProperties,
+    SetItemPropertiresPayload,
+    ResetItemProperties,
+    ResetItemPropertiesPayload,
 } from "./types";
 import {
     FETCH_LIST_REQUEST,
@@ -36,6 +40,8 @@ import {
     DELETE_ITEM_REQUEST,
     DELETE_ITEM_SUCCESS,
     DELETE_ITEM_FAILURE,
+    SET_LIST_PROPERTY,
+    RESET_LIST_PROPERTY,
 } from "./actionTypes";
 
 export const fetchListRequest = (): FetchListRequest => ({
@@ -116,5 +122,19 @@ export const deleteItemFailure = (
     payload: DeleteItemFailurePayload,
 ): DeleteItemFailure => ({
     type: DELETE_ITEM_FAILURE,
+    payload,
+});
+
+export const setItemProperties = (
+    payload: SetItemPropertiesPayload,
+): SetItemProperties => ({
+    type: SET_LIST_PROPERTIES,
+    payload,
+});
+
+export const ResetItemProperties = (
+    payload: ResetItemPropertiesPayload,
+): ResetItemProperties => ({
+    type: RESET_LIST_PROPERTIES,
     payload,
 });

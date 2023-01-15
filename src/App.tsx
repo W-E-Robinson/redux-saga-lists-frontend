@@ -8,6 +8,8 @@ import {
     toggleCompletionRequest,
     deleteItemRequest,
     addItemRequest,
+    setListProperties,
+    resetListProperties,
 } from "./modules/Redux/actions/lists/actions";
 
 import "./App.css";
@@ -17,8 +19,12 @@ export const App = () => {
     const list = useSelector(
         (state: AppState) => state.lists.list,
     );
+    const listName = useSelector(
+        (state: AppState) => state.lists.listName,
+    );
     
     const [newItem, setNewItem] = useState<string>("");
+    const [newListName, setNewListName] = useState<string>("");
 
     useEffect(() => {
         reduxDispatch(fetchListRequest());
@@ -39,10 +45,27 @@ export const App = () => {
         reduxDispatch(addItemRequest(newItem));
         setNewItem("");
     };
+
+    const nameOrResetList = (event) => {
+        event.preventDefault();
+        if (listName) {
+            reduxDispatch(resetListProperties(["listName"]));
+        } else {
+            reduxDispatch(setListProperties({ listName: newListName }));
+        };
+    };
      
     return (
         <>
             <h1>redux-saga</h1>
+            <form onSubmit={nameOrResetList}>
+                <input
+                    type="text"
+                    value={newListName}
+                    onChange={event => setNewListItem(event.target.value)}
+                />
+                <button type="submit">{listName ? "Reset Name" : "Name List"}</button>
+            </form>
             {list.map((item, index) => {
                 return <div key={index}>
                     <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>

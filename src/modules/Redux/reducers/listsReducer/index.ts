@@ -21,6 +21,7 @@ export const initialState: ListState = {
     pending: false,
     error: null,
     list: [],
+    listName: "",
 };
 
 export const listsReducer = (state = initialState, action: ListActions) => {
