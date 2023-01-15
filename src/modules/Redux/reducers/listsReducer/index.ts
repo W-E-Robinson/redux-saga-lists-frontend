@@ -11,6 +11,8 @@ import {
     DELETE_ITEM_REQUEST,
     DELETE_ITEM_FAILURE,
     DELETE_ITEM_SUCCESS,
+    SET_LIST_PROPERTIES,
+    RESET_LIST_PROPERTIES,
 } from "../../actions/lists/actionTypes";
 import {
     ListActions,
@@ -21,6 +23,7 @@ export const initialState: ListState = {
     pending: false,
     error: null,
     list: [],
+    listName: "",
 };
 
 export const listsReducer = (state = initialState, action: ListActions) => {
@@ -51,6 +54,16 @@ export const listsReducer = (state = initialState, action: ListActions) => {
                 ...state,
                 pending: false,
                 error: action.payload.error,
+            };
+        case SET_LIST_PROPERTIES:
+            return {
+                ...state,
+                listName: action.payload.listName ? action.payload.listName : state.listItem,
+            };
+        case RESET_LIST_PROPERTIES:
+            return {
+                ...state,
+                listName: action.payload.listName ? "" : state.listItem,
             };
         default:
             return {
