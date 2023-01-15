@@ -102,7 +102,7 @@ export type AddItemFailure = {
 };
 
 export interface DeleteItemRequestPayload {
-    value: string;
+    id: number;
 }
 
 export interface DeleteItemSuccessPayload {
