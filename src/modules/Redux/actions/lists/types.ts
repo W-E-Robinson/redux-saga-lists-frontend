@@ -8,6 +8,9 @@ import {
     ADD_ITEM_REQUEST,
     ADD_ITEM_SUCCESS,
     ADD_ITEM_FAILURE,
+    DELETE_ITEM_REQUEST,
+    DELETE_ITEM_SUCCESS,
+    DELETE_ITEM_FAILURE,
 } from "./actionTypes";
 
 export interface ListItem {
@@ -98,6 +101,33 @@ export type AddItemFailure = {
     payload: AddItemFailurePayload;
 };
 
+export interface DeleteItemRequestPayload {
+    value: string;
+}
+
+export interface DeleteItemSuccessPayload {
+    list: ListItem[];
+}
+
+export interface DeleteItemFailurePayload {
+    error: string;
+}
+
+export type DeleteItemRequest = {
+    type: typeof DELETE_ITEM_REQUEST;
+    payload: DeleteItemRequestPayload;
+}
+
+export type DeleteItemSuccess = {
+    type: typeof DELETE_ITEM_SUCCESS;
+    payload: DeleteItemSuccessPayload;
+};
+
+export type DeleteItemFailure = {
+    type: typeof DELETE_ITEM_FAILURE;
+    payload: DeleteItemFailurePayload;
+};
+
 export type ListActions =
     | FetchListRequest
     | FetchListSuccess
@@ -108,3 +138,6 @@ export type ListActions =
     | AddItemRequest
     | AddItemSuccess
     | AddItemFailure
+    | DeleteItemRequest
+    | DeleteItemSuccess
+    | DeleteItemFailure
