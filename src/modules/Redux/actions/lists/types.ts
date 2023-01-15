@@ -11,8 +11,8 @@ import {
     DELETE_ITEM_REQUEST,
     DELETE_ITEM_SUCCESS,
     DELETE_ITEM_FAILURE,
-    SET_ITEM_PROPERTY,
-    RESET_ITEM_PROPERTY,
+    SET_LIST_PROPERTY,
+    RESET_LIST_PROPERTY,
 } from "./actionTypes";
 
 export interface ListItem {
@@ -131,22 +131,22 @@ export type DeleteItemFailure = {
     payload: DeleteItemFailurePayload;
 };
 
-export interface SetItemPropertiesPayload { //can be multiple properties
-    properties: string[];
+export interface SetListPropertiesPayload { //can be multiple properties
+    properties: string[]
 }
 
-export type SetItemProperties = {
-    type: typeof SET_ITEM_PROPERTY;
-    payload: SetItemPropertiesPayload;
+export type SetListProperties = {
+    type: typeof SET_LIST_PROPERTY;
+    payload: SetListPropertiesPayload;
 };
 
-export interface ResetItemPropertiesPayload { //can be multiple properties
+export interface ResetListPropertiesPayload { //can be multiple properties
     properties: string[];
 }
 
-export type ResetItemProperties = {
-    type: typeof RESET_ITEM_PROPERTY;
-    payload: ResetItemPropertiesPayload;
+export type ResetListProperties = {
+    type: typeof RESET_LIST_PROPERTY;
+    payload: ResetListPropertiesPayload;
 };
 
 export type ListActions =
@@ -162,5 +162,5 @@ export type ListActions =
     | DeleteItemRequest
     | DeleteItemSuccess
     | DeleteItemFailure
-    | SetItemProperties
-    | ResetItemProperties
+    | SetListProperties
+    | ResetListProperties
