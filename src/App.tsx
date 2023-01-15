@@ -50,9 +50,16 @@ export const App = () => {
         event.preventDefault();
         if (listName) {
             reduxDispatch(resetListProperties(["listName"]));
+            setNewListName("");
         } else {
             reduxDispatch(setListProperties({ listName: newListName }));
         };
+    };
+
+    const listNameOnChange = (event) => {
+        if (!listName) {
+            setNewListName(event.target.value);
+        }
     };
      
     return (
@@ -62,10 +69,11 @@ export const App = () => {
                 <input
                     type="text"
                     value={newListName}
-                    onChange={event => setNewListItem(event.target.value)}
+                    onChange={listNameOnChange}
                 />
                 <button type="submit">{listName ? "Reset Name" : "Name List"}</button>
             </form>
+            <h1>List Name: {listName}</h1>
             {list.map((item, index) => {
                 return <div key={index}>
                     <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
