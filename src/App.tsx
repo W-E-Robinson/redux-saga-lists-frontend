@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,6 +11,7 @@ import {
     setListProperties,
     resetListProperties,
 } from "./modules/Redux/actions/lists/actions";
+import { ListItem } from "./modules/Redux/actions/lists/types";
 
 import "./App.css";
 
@@ -30,35 +31,36 @@ export const App = () => {
         reduxDispatch(fetchListRequest());
     }, [reduxDispatch]);
 
-    const completeItem = (index: number) => {
+    const completeItem = (index: number): void => {
         const itemId: number = list[index].id;
-        reduxDispatch(toggleCompletionRequest(itemId));
+        reduxDispatch(toggleCompletionRequest({ id: itemId }));
     };
 
-    const deleteItem = (index: number) => {
+    const deleteItem = (index: number): void => {
         const itemId: number = list[index].id;
-        reduxDispatch(deleteItemRequest(itemId));
+        reduxDispatch(deleteItemRequest({ id: itemId }));
     };
 
-    const addItem = (event) => {
+    const addItem = (event: React.SyntheticEvent): void => {
         event.preventDefault();
-        reduxDispatch(addItemRequest(newItem));
+        reduxDispatch(addItemRequest({ value: newItem }));
         setNewItem("");
     };
 
-    const nameOrResetList = (event) => {
+    const nameOrResetList = (event: React.SyntheticEvent): void => {
         event.preventDefault();
         if (listName) {
-            reduxDispatch(resetListProperties(["listName"]));
+            reduxDispatch(resetListProperties({ properties: ["listName"] }));
             setNewListName("");
         } else {
             reduxDispatch(setListProperties({ listName: newListName }));
         };
     };
 
-    const listNameOnChange = (event) => {
+    const listNameOnChange = (event: ChangeEvent): void => {
+        const target = event.target as HTMLTextAreaElement;
         if (!listName) {
-            setNewListName(event.target.value);
+            setNewListName(target.value);
         }
     };
      
@@ -74,7 +76,7 @@ export const App = () => {
                 <button type="submit">{listName ? "Reset Name" : "Name List"}</button>
             </form>
             <h1>List Name: {listName}</h1>
-            {list.map((item, index) => {
+            {list.map((item: ListItem, index: number) => {
                 return <div key={index}>
                     <h2>{item.value} - {item.completed ? "COMPLETED" : "TO DO"}</h2>
                     <button onClick={() => completeItem(index)}>toggle completion</button>

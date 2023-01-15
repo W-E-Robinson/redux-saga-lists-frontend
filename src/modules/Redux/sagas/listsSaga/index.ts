@@ -22,7 +22,7 @@ import {
     postItem,
     deleteItem,
 } from "../../apis/lists" 
-import { ListItem } from "../../actions/lists/types";
+import { AddItemRequest, DeleteItemRequest, ListItem, ToggleCompletionRequest } from "../../actions/lists/types";
 
 interface Response {
     data: ListItem[];
@@ -46,10 +46,9 @@ export function* fetchListSaga() {
     }
 }
 
-function* toggleCompletionSaga(id: number) {
+function* toggleCompletionSaga(action: ToggleCompletionRequest) {
     try {
-        const response: Response = yield call(patchList, id.payload);
-        //const response: Response = yield call(patchList, id);
+        const response: Response = yield call(patchList, action.payload.id);
         yield put(
             toggleCompletionSuccess({
                 list: response.data,
@@ -64,9 +63,9 @@ function* toggleCompletionSaga(id: number) {
     }
 }
 
-function* addItemSaga(value: string) {
+function* addItemSaga(action: AddItemRequest) {
     try {
-        const response = yield call(postItem, value.payload);
+        const response: Response = yield call(postItem, action.payload.value);
         yield put(
             addItemSuccess({
                 list: response.data,
@@ -81,10 +80,9 @@ function* addItemSaga(value: string) {
     }
 }
 
-function* deleteItemSaga(id: number) {
+function* deleteItemSaga(action: DeleteItemRequest) {
     try {
-        const response: Response = yield call(deleteItem, id.payload);
-        //const response: Response = yield call(patchList, id);
+        const response: Response = yield call(deleteItem, action.payload.id);
         yield put(
             deleteItemSuccess({
                 list: response.data,
