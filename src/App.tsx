@@ -43,7 +43,7 @@ export const App = () => {
 
     const addItem = (event: React.SyntheticEvent): void => {
         event.preventDefault();
-        reduxDispatch(addItemRequest(newItem));
+        reduxDispatch(addItemRequest({ value: newItem }));
         setNewItem("");
     };
 
