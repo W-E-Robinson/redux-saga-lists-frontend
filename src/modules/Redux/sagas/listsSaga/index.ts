@@ -37,10 +37,10 @@ export function* fetchListSaga() {
                 list: response.data,
             }),
         )   
-    } catch (error) {
+    } catch (error: any) {
         yield put(
             fetchListFailure({
-                error: error.response ? error.reponse.error : error.message
+                error: error.message || "Unknown error!",
             }),
         )
     }
@@ -54,10 +54,10 @@ function* toggleCompletionSaga(action: ToggleCompletionRequest) {
                 list: response.data,
             }),
         )   
-    } catch (error) {
+    } catch (error: any) {
         yield put(
             toggleCompletionFailure({
-                error: error.response ? error.reponse.error : error.message
+                error: error.message || "Unknown error!",
             }),
         )
     }
@@ -71,10 +71,10 @@ function* addItemSaga(action: AddItemRequest) {
                 list: response.data,
             }),
         )   
-    } catch (error) {
+    } catch (error: any) {
         yield put(
             addItemFailure({
-                error: error.response ? error.reponse.error : error.message
+                error: error.message || "Unknown error!",
             }),
         )
     }
@@ -88,10 +88,10 @@ function* deleteItemSaga(action: DeleteItemRequest) {
                 list: response.data,
             }),
         )   
-    } catch (error) {
+    } catch (error: any) {
         yield put(
             deleteItemFailure({
-                error: error.response ? error.reponse.error : error.message
+                error: error.message || "Unknown error!",
             }),
         )
     }
