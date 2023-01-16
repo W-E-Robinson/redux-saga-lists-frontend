@@ -11,15 +11,15 @@ import {
 
 describe("listReducer testing", () => {
     test("#1 FETCH_LIST_REQUEST", () => {
-        const mockAction = { payload: { type: FETCH_LIST_REQUEST }}; 
-        const updatedState = listsReducer(initialState, mockAction.payload); 
+        const mockAction = { type: FETCH_LIST_REQUEST }; 
+        const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
         expect(updatedState.error).toBe(null);
         expect(updatedState.list).toEqual([]);
     });
 
-    test("#2 FETCH_LIST_REQUEST", () => {
+    test("#2 FETCH_LIST_SUCCESS", () => {
         const mockAction = {
             type: FETCH_LIST_SUCCESS,
             payload: { 
@@ -49,7 +49,7 @@ describe("listReducer testing", () => {
         expect(updatedState.list).toEqual(mockAction.payload.list);
     });
 
-    test("#3 FETCH_LIST_REQUEST", () => {
+    test("#3 FETCH_LIST_FAILURE", () => {
         const mockAction = {
             type: FETCH_LIST_FAILURE,
             payload: { 
@@ -62,4 +62,58 @@ describe("listReducer testing", () => {
         expect(updatedState.error).toEqual(mockAction.payload.error);
         expect(updatedState.list).toEqual([]);
     });
+
+    test("#4 TOGGLE_COMPLETION_REQUEST", () => {
+        const mockAction = { type: FETCH_LIST_REQUEST }; 
+        const updatedState = listsReducer(initialState, mockAction); 
+
+        expect(updatedState.pending).toBe(true);
+        expect(updatedState.error).toBe(null);
+        expect(updatedState.list).toEqual([]);
+    });
+
+    test("#5 TOGGLE_COMPLETION_SUCCESS", () => {
+        const mockAction = {
+            type: FETCH_LIST_SUCCESS,
+            payload: { 
+                list: [
+                    {
+                        "id": 0,
+                        "value": "mock job 1",
+                        "completed": false
+                    },
+                    {
+                        "id": 1,
+                        "value": "mock job 2",
+                        "completed": false
+                    },
+                    {
+                        "id": 2,
+                        "value": "mock job 3",
+                        "completed": false
+                    }
+                ],
+            },
+        };
+        const updatedState = listsReducer(initialState, mockAction); 
+
+        expect(updatedState.pending).toBe(false);
+        expect(updatedState.error).toBe(null);
+        expect(updatedState.list).toEqual(mockAction.payload.list);
+    });
+
+    test("#6 TOGGLE_COMPLETION_FAILURE", () => {
+        const mockAction = {
+            type: FETCH_LIST_FAILURE,
+            payload: { 
+                error: "mock error message",
+            },
+        };
+        const updatedState = listsReducer(initialState, mockAction); 
+
+        expect(updatedState.pending).toBe(false);
+        expect(updatedState.error).toEqual(mockAction.payload.error);
+        expect(updatedState.list).toEqual([]);
+    });
+
 });
