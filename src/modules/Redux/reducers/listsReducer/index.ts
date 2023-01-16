@@ -65,10 +65,6 @@ export const listsReducer = (state = initialState, action: ListActions) => {
                 ...state,
                 listName: action.payload.properties.includes("listName") ? "" : state.listName,
             };
-        default:
-            return {
-                ...state,
-            };
     }
 }
 
