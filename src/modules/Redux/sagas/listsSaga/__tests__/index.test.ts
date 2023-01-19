@@ -68,7 +68,7 @@ describe("#1 fetchListSaga testing", () => {
         ));
         expect(generator.next(response).value).toEqual(put(
             fetchListSuccess({
-                list: [mockData]
+                list: mockData
             })
         ));
     });
