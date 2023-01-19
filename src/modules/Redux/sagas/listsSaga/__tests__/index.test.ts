@@ -30,7 +30,6 @@ import {
     deleteItem,
 } from "../../../apis/lists";
 import { ListItem } from "../../../actions/lists/types";
-import { mockComponent } from "react-dom/test-utils";
 
 const mockData = [
     {
@@ -158,7 +157,7 @@ describe("#2 toggleCompletionSaga testing", () => {
         const generator = toggleCompletionSaga(mockAction);
 
         expect(generator.next().value).toEqual(call(
-            patchList
+            patchList, mockAction.payload.id,
         ));
         expect(generator.next(response).value).toEqual(put(
             toggleCompletionSuccess({
@@ -182,10 +181,166 @@ describe("#2 toggleCompletionSaga testing", () => {
         const generator = toggleCompletionSaga(mockAction);
 
         expect(generator.next().value).toEqual(call(
-            patchList,
+            patchList, mockAction.payload.id,
         ));
         expect(generator.throw(response).value).toEqual(put(
             toggleCompletionFailure({
+                error: response.message, 
+            })
+        ));
+    });
+});
+
+describe("#3 addItemSaga testing", () => {
+    function* mockSaga(api) {
+        const action = yield take(ADD_ITEM_REQUEST);
+        const response: ListItem[] = yield call(api.postItem, action.payload);
+
+        yield put({
+            type: ADD_ITEM_REQUEST,
+            payload: response,
+        });
+    };
+
+    test("#1 mockSaga", () => {
+        const api = {
+            postItem: resource => ({ resource }),
+        };
+
+        return expectSaga(mockSaga, api)
+            .put({
+                type: ADD_ITEM_REQUEST,
+                payload: { resource: "mockResource" },
+            })
+            .dispatch({
+                type: ADD_ITEM_REQUEST,
+                payload: "mockResource",
+            })
+            .run();
+    });
+
+    test("#2 successful response", () => {
+        const mockAction = {
+            type: ADD_ITEM_REQUEST,
+            payload: {
+                value: "mock value",
+            },
+        };
+
+        const response = {
+            message: "List successfully returned",
+            data: mockData,
+        };
+
+        const generator = addItemSaga(mockAction);
+
+        expect(generator.next().value).toEqual(call(
+            postItem, mockAction.payload.value,
+        ));
+        expect(generator.next(response).value).toEqual(put(
+            addItemSuccess({
+                list: mockData
+            })
+        ));
+    });
+
+    test("#3 error response", () => {
+        const mockAction = {
+            type: ADD_ITEM_REQUEST,
+            payload: {
+                value: "mock value",
+            },
+        };
+
+        const response = {
+            message: "500 Internal Server Error!",
+        };
+
+        const generator = addItemSaga(mockAction);
+
+        expect(generator.next().value).toEqual(call(
+            postItem, mockAction.payload.value,
+        ));
+        expect(generator.throw(response).value).toEqual(put(
+            addItemFailure({
+                error: response.message, 
+            })
+        ));
+    });
+});
+
+describe("#4 deleteItemSaga testing", () => {
+    function* mockSaga(api) {
+        const action = yield take(DELETE_ITEM_REQUEST);
+        const response: ListItem[] = yield call(api.deleteItem, action.payload);
+
+        yield put({
+            type: DELETE_ITEM_REQUEST,
+            payload: response,
+        });
+    };
+
+    test("#1 mockSaga", () => {
+        const api = {
+            deleteItem: resource => ({ resource }),
+        };
+
+        return expectSaga(mockSaga, api)
+            .put({
+                type: DELETE_ITEM_REQUEST,
+                payload: { resource: "mockResource" },
+            })
+            .dispatch({
+                type: DELETE_ITEM_REQUEST,
+                payload: "mockResource",
+            })
+            .run();
+    });
+
+    test("#2 successful response", () => {
+        const mockAction = {
+            type: DELETE_ITEM_REQUEST,
+            payload: {
+                id : 1,
+            },
+        };
+
+        const response = {
+            message: "List successfully returned",
+            data: mockData,
+        };
+
+        const generator = deleteItemSaga(mockAction);
+
+        expect(generator.next().value).toEqual(call(
+            deleteItem, mockAction.payload.id,
+        ));
+        expect(generator.next(response).value).toEqual(put(
+            deleteItemSuccess({
+                list: mockData
+            })
+        ));
+    });
+
+    test("#3 error response", () => {
+        const mockAction = {
+            type: DELETE_ITEM_REQUEST,
+            payload: {
+                id : 1,
+            },
+        };
+
+        const response = {
+            message: "500 Internal Server Error!",
+        };
+
+        const generator = deleteItemSaga(mockAction);
+
+        expect(generator.next().value).toEqual(call(
+            deleteItem, mockAction.payload.id,
+        ));
+        expect(generator.throw(response).value).toEqual(put(
+            deleteItemFailure({
                 error: response.message, 
             })
         ));
