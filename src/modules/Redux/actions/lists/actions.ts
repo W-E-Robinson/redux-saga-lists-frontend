@@ -26,6 +26,8 @@ import {
     SetListPropertiesPayload,
     ResetListProperties,
     ResetListPropertiesPayload,
+    ResetListState,
+    ResetListStatePayload,
 } from "./types";
 import {
     FETCH_LIST_REQUEST,
@@ -42,6 +44,7 @@ import {
     DELETE_ITEM_FAILURE,
     SET_LIST_PROPERTIES,
     RESET_LIST_PROPERTIES,
+    RESET_LIST_STATE,
 } from "./actionTypes";
 
 export const fetchListRequest = (): FetchListRequest => ({
@@ -137,4 +140,8 @@ export const resetListProperties = (
 ): ResetListProperties => ({
     type: RESET_LIST_PROPERTIES,
     payload,
+});
+
+export const resetListState = (): ResetListState => ({
+    type: RESET_LIST_STATE,
 });

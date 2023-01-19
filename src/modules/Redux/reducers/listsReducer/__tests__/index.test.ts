@@ -13,6 +13,7 @@ import {
     DELETE_ITEM_FAILURE,
     SET_LIST_PROPERTIES,
     RESET_LIST_PROPERTIES,
+    RESET_LIST_STATE,
 } from "../../../actions/lists/actionTypes";
 
 import {
@@ -254,6 +255,18 @@ describe("listReducer testing", () => {
             payload: { 
                 properties: ["listName"],
             },
+        };
+        const updatedState = listsReducer(alteredInitialState, mockAction); 
+
+        expect(updatedState.pending).toBe(false);
+        expect(updatedState.error).toEqual(null);
+        expect(updatedState.listName).toEqual("");
+    });
+    
+    test("#13 RESET_LIST_STATE", () => {
+        const alteredInitialState = { ...initialState, listName: "mockListName" };
+        const mockAction = {
+            type: RESET_LIST_STATE,
         };
         const updatedState = listsReducer(alteredInitialState, mockAction); 
 
