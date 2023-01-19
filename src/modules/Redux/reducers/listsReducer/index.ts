@@ -13,6 +13,7 @@ import {
     DELETE_ITEM_SUCCESS,
     SET_LIST_PROPERTIES,
     RESET_LIST_PROPERTIES,
+    RESET_LIST_STATE,
 } from "../../actions/lists/actionTypes";
 import {
     ListActions,
@@ -64,6 +65,10 @@ export const listsReducer = (state = initialState, action: ListActions) => {
             return {
                 ...state,
                 listName: action.payload.properties.includes("listName") ? "" : state.listName,
+            };
+        case RESET_LIST_STATE:
+            return {
+                ...initialState,
             };
     }
 }

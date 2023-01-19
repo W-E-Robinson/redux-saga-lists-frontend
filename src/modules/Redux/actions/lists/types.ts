@@ -13,6 +13,7 @@ import {
     DELETE_ITEM_FAILURE,
     SET_LIST_PROPERTIES,
     RESET_LIST_PROPERTIES,
+    RESET_LIST_STATE,
 } from "./actionTypes";
 
 export interface ListItem {
@@ -149,6 +150,10 @@ export type ResetListProperties = {
     payload: ResetListPropertiesPayload;
 };
 
+export type ResetState = {
+    type: typeof RESET_LIST_STATE;
+};
+
 export type ListActions =
     | FetchListRequest
     | FetchListSuccess
@@ -164,3 +169,4 @@ export type ListActions =
     | DeleteItemFailure
     | SetListProperties
     | ResetListProperties
+    | ResetState
