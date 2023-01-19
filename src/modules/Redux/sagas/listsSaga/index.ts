@@ -46,7 +46,7 @@ export function* fetchListSaga() {
     }
 }
 
-function* toggleCompletionSaga(action: ToggleCompletionRequest) {
+export function* toggleCompletionSaga(action: ToggleCompletionRequest) {
     try {
         const response: Response = yield call(patchList, action.payload.id);
         yield put(
@@ -63,7 +63,7 @@ function* toggleCompletionSaga(action: ToggleCompletionRequest) {
     }
 }
 
-function* addItemSaga(action: AddItemRequest) {
+export function* addItemSaga(action: AddItemRequest) {
     try {
         const response: Response = yield call(postItem, action.payload.value);
         yield put(
@@ -80,7 +80,7 @@ function* addItemSaga(action: AddItemRequest) {
     }
 }
 
-function* deleteItemSaga(action: DeleteItemRequest) {
+export function* deleteItemSaga(action: DeleteItemRequest) {
     try {
         const response: Response = yield call(deleteItem, action.payload.id);
         yield put(
