@@ -1,22 +1,21 @@
 # redux-lists
-# thursday-poker-docker
 
 ## A simple list making app as a reference for redux saga with typescript.
 
-### Examples shown
+### Examples shown:
 
-- FETCH_REQUEST
-- FETCH_SUCCESS
-- FETCH_FAILURE
-- POST_REQUEST
-- POST_SUCCESS
-- POST_FAILURE
-- PATCH_REQUEST
-- PATCH_SUCCESS
-- PATCH_FAILURE
-- DELETE_REQUEST
-- DELETE_SUCCESS
-- DELETE_FAILURE
-- SET - DONE
-- RESET - DONE
-- RESET_CHOSEN - DONE
+- [x] FETCH_REQUEST
+- [x] FETCH_SUCCESS
+- [x] FETCH_FAILURE
+- [x] POST_REQUEST
+- [x] POST_SUCCESS
+- [x] POST_FAILURE
+- [x] PATCH_REQUEST
+- [x] PATCH_SUCCESS
+- [x] PATCH_FAILURE
+- [x] DELETE_REQUEST
+- [x] DELETE_SUCCESS
+- [x] DELETE_FAILURE
+- [x] SET
+- [x] RESET
+- [x] RESET_CHOSEN
