@@ -150,7 +150,7 @@ export type ResetListProperties = {
     payload: ResetListPropertiesPayload;
 };
 
-export type ResetState = {
+export type ResetListState = {
     type: typeof RESET_LIST_STATE;
 };
 
@@ -169,4 +169,4 @@ export type ListActions =
     | DeleteItemFailure
     | SetListProperties
     | ResetListProperties
-    | ResetState
+    | ResetListState

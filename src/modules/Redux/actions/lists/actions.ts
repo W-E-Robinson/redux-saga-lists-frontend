@@ -27,7 +27,6 @@ import {
     ResetListProperties,
     ResetListPropertiesPayload,
     ResetListState,
-    ResetListStatePayload,
 } from "./types";
 import {
     FETCH_LIST_REQUEST,
