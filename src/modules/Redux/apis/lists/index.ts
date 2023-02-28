@@ -30,9 +30,8 @@ export const postItem = async (value: string) => {
     try {
         const response = await axios.post(
             url,
-            { value: value }, 
+            { value: value },
         );
-        console.log(response);
         return response.data;
     } catch (error) {
         console.error(error);
