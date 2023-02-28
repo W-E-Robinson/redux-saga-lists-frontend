@@ -133,7 +133,7 @@ export type DeleteItemFailure = {
 };
 
 export interface SetListPropertiesPayload {
-    listName?: string;
+    listName: string;
 }
 
 export type SetListProperties = {
