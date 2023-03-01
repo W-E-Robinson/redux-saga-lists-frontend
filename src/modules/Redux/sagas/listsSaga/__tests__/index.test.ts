@@ -50,7 +50,7 @@ const mockData = [
 ];
 
 describe("#1 fetchListSaga testing", () => {
-    function* mockSaga(api) {
+    function* mockSaga(api: unknown) {
         const action = yield take(FETCH_LIST_REQUEST);
         const response: ListItem[] = yield call(api.getList, action.payload);
 
@@ -114,7 +114,7 @@ describe("#1 fetchListSaga testing", () => {
 });
 
 describe("#2 toggleCompletionSaga testing", () => {
-    function* mockSaga(api) {
+    function* mockSaga(api: unknown) {
         const action = yield take(TOGGLE_COMPLETION_REQUEST);
         const response: ListItem[] = yield call(api.patchList, action.payload);
 
@@ -192,7 +192,7 @@ describe("#2 toggleCompletionSaga testing", () => {
 });
 
 describe("#3 addItemSaga testing", () => {
-    function* mockSaga(api) {
+    function* mockSaga(api: unknown) {
         const action = yield take(ADD_ITEM_REQUEST);
         const response: ListItem[] = yield call(api.postItem, action.payload);
 
@@ -270,7 +270,7 @@ describe("#3 addItemSaga testing", () => {
 });
 
 describe("#4 deleteItemSaga testing", () => {
-    function* mockSaga(api) {
+    function* mockSaga(api: unknown) {
         const action = yield take(DELETE_ITEM_REQUEST);
         const response: ListItem[] = yield call(api.deleteItem, action.payload);
 
