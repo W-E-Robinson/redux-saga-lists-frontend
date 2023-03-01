@@ -53,7 +53,7 @@ describe("Actions functions testing", () => {
         expect(deleteItemSuccess({ list: [{ id: 1, value: "mock value", completed: true }] }).type).toBe("DELETE_ITEM_SUCCESS");
     });
     test("#13 setListProperties", () => {
-        expect(setListProperties({ listItem: "mock value" }).type).toBe("SET_LIST_PROPERTIES");
+        expect(setListProperties({ listName: "mock value" }).type).toBe("SET_LIST_PROPERTIES");
     });
     test("#14 resetListProperties", () => {
         expect(resetListProperties({ properties: ["listItem"] }).type).toBe("RESET_LIST_PROPERTIES");
