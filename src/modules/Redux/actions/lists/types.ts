@@ -169,4 +169,4 @@ export type ListActions =
     | DeleteItemFailure
     | SetListProperties
     | ResetListProperties
-    | ResetListState
+    | ResetListState;
