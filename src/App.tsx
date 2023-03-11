@@ -19,10 +19,10 @@ export const App = () => {
     const reduxDispatch = useDispatch();
     const list = useSelector(
         (state: AppState) => state.lists.list,
-    );
+    ) ?? [];
     const listName = useSelector(
         (state: AppState) => state.lists.listName,
-    );
+    ) ?? "";
     
     const [newItem, setNewItem] = useState<string>("");
     const [newListName, setNewListName] = useState<string>("");
