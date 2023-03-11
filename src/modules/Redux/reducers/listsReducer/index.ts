@@ -70,6 +70,10 @@ export const listsReducer = (state = initialState, action: ListActions) => {
             return {
                 ...initialState,
             };
+        default:
+            return {
+                ...state,
+            };
     }
 }
 
