@@ -50,7 +50,7 @@ const mockData = [
 ];
 
 describe("#1 fetchListSaga testing", () => {
-    function* mockSaga(api: unknown) {
+    function* mockSaga(api: any) {
         const action = yield take(FETCH_LIST_REQUEST);
         const response: ListItem[] = yield call(api.getList, action.payload);
 
