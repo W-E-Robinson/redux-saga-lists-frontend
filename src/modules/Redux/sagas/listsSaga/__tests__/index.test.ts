@@ -50,7 +50,7 @@ const mockData = [
 ];
 
 describe("#1 fetchListSaga testing", () => {
-    function* mockSaga(api: any) {
+    function* mockSaga(api) {
         const action = yield take(FETCH_LIST_REQUEST);
         const response: ListItem[] = yield call(api.getList, action.payload);
 
@@ -62,7 +62,7 @@ describe("#1 fetchListSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            getList: resource => ({ resource }),
+            getList: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
@@ -126,7 +126,7 @@ describe("#2 toggleCompletionSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            patchList: resource => ({ resource }),
+            patchList: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
@@ -204,7 +204,7 @@ describe("#3 addItemSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            postItem: resource => ({ resource }),
+            postItem: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
@@ -282,7 +282,7 @@ describe("#4 deleteItemSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            deleteItem: resource => ({ resource }),
+            deleteItem: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
