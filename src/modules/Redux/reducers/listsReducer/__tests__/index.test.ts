@@ -15,6 +15,23 @@ import {
     RESET_LIST_PROPERTIES,
     RESET_LIST_STATE,
 } from "../../../actions/lists/actionTypes";
+import {
+    AddItemFailure,
+    AddItemRequest,
+    AddItemSuccess,
+    DeleteItemFailure,
+    DeleteItemRequest,
+    DeleteItemSuccess,
+    FetchListFailure,
+    FetchListRequest,
+    FetchListSuccess,
+    ResetListProperties,
+    ResetListState,
+    SetListProperties,
+    ToggleCompletionFailure,
+    ToggleCompletionRequest,
+    ToggleCompletionSuccess,
+} from "../../../actions/lists/types";
 
 import {
     initialState,
@@ -23,7 +40,7 @@ import {
 
 describe("listReducer testing", () => {
     test("#1 FETCH_LIST_REQUEST", () => {
-        const mockAction = { type: FETCH_LIST_REQUEST }; 
+        const mockAction: FetchListRequest = { type: FETCH_LIST_REQUEST }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
@@ -32,7 +49,7 @@ describe("listReducer testing", () => {
     });
 
     test("#2 FETCH_LIST_SUCCESS", () => {
-        const mockAction = {
+        const mockAction: FetchListSuccess = {
             type: FETCH_LIST_SUCCESS,
             payload: { 
                 list: [
@@ -62,7 +79,7 @@ describe("listReducer testing", () => {
     });
 
     test("#3 FETCH_LIST_FAILURE", () => {
-        const mockAction = {
+        const mockAction: FetchListFailure = {
             type: FETCH_LIST_FAILURE,
             payload: { 
                 error: "mock error message",
@@ -76,7 +93,7 @@ describe("listReducer testing", () => {
     });
 
     test("#4 TOGGLE_COMPLETION_REQUEST", () => {
-        const mockAction = { type: TOGGLE_COMPLETION_REQUEST }; 
+        const mockAction: ToggleCompletionRequest = { type: TOGGLE_COMPLETION_REQUEST }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
@@ -85,7 +102,7 @@ describe("listReducer testing", () => {
     });
 
     test("#5 TOGGLE_COMPLETION_SUCCESS", () => {
-        const mockAction = {
+        const mockAction: ToggleCompletionSuccess = {
             type: TOGGLE_COMPLETION_SUCCESS,
             payload: { 
                 list: [
@@ -115,7 +132,7 @@ describe("listReducer testing", () => {
     });
 
     test("#6 TOGGLE_COMPLETION_FAILURE", () => {
-        const mockAction = {
+        const mockAction: ToggleCompletionFailure = {
             type: TOGGLE_COMPLETION_FAILURE,
             payload: { 
                 error: "mock error message",
@@ -129,7 +146,7 @@ describe("listReducer testing", () => {
     });
 
     test("#7 ADD_ITEM_REQUEST", () => {
-        const mockAction = { type: ADD_ITEM_REQUEST }; 
+        const mockAction: AddItemRequest = { type: ADD_ITEM_REQUEST }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
@@ -138,7 +155,7 @@ describe("listReducer testing", () => {
     });
 
     test("#8 ADD_ITEM_SUCCESS", () => {
-        const mockAction = {
+        const mockAction: AddItemSuccess = {
             type: ADD_ITEM_SUCCESS,
             payload: { 
                 list: [
@@ -168,7 +185,7 @@ describe("listReducer testing", () => {
     });
 
     test("#9 ADD_ITEM_FAILURE", () => {
-        const mockAction = {
+        const mockAction: AddItemFailure = {
             type: ADD_ITEM_FAILURE,
             payload: { 
                 error: "mock error message",
@@ -182,7 +199,7 @@ describe("listReducer testing", () => {
     });
 
     test("#10 DELETE_ITEM_REQUEST", () => {
-        const mockAction = { type: DELETE_ITEM_REQUEST }; 
+        const mockAction: DeleteItemRequest = { type: DELETE_ITEM_REQUEST }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
@@ -191,7 +208,7 @@ describe("listReducer testing", () => {
     });
 
     test("#11 DELETE_ITEM_SUCCESS", () => {
-        const mockAction = {
+        const mockAction: DeleteItemSuccess = {
             type: DELETE_ITEM_SUCCESS,
             payload: { 
                 list: [
@@ -221,7 +238,7 @@ describe("listReducer testing", () => {
     });
 
     test("#12 DELETE_ITEM_FAILURE", () => {
-        const mockAction = {
+        const mockAction: DeleteItemFailure = {
             type: DELETE_ITEM_FAILURE,
             payload: { 
                 error: "mock error message",
@@ -235,7 +252,7 @@ describe("listReducer testing", () => {
     });
 
     test("#12 SET_LIST_PROPERTIES", () => {
-        const mockAction = {
+        const mockAction: SetListProperties = {
             type: SET_LIST_PROPERTIES,
             payload: { 
                 listName: "mock list name",
@@ -250,7 +267,7 @@ describe("listReducer testing", () => {
 
     test("#12 RESET_LIST_PROPERTIES", () => {
         const alteredInitialState = { ...initialState, listName: "mockListName" };
-        const mockAction = {
+        const mockAction: ResetListProperties = {
             type: RESET_LIST_PROPERTIES,
             payload: { 
                 properties: ["listName"],
@@ -265,7 +282,7 @@ describe("listReducer testing", () => {
     
     test("#13 RESET_LIST_STATE", () => {
         const alteredInitialState = { ...initialState, listName: "mockListName" };
-        const mockAction = {
+        const mockAction: ResetListState = {
             type: RESET_LIST_STATE,
         };
         const updatedState = listsReducer(alteredInitialState, mockAction); 
