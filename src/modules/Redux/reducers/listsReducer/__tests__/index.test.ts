@@ -93,7 +93,12 @@ describe("listReducer testing", () => {
     });
 
     test("#4 TOGGLE_COMPLETION_REQUEST", () => {
-        const mockAction: ToggleCompletionRequest = { type: TOGGLE_COMPLETION_REQUEST }; 
+        const mockAction: ToggleCompletionRequest = {
+            type: TOGGLE_COMPLETION_REQUEST,
+            payload: {
+                id: 1,
+            },
+        }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
@@ -146,7 +151,12 @@ describe("listReducer testing", () => {
     });
 
     test("#7 ADD_ITEM_REQUEST", () => {
-        const mockAction: AddItemRequest = { type: ADD_ITEM_REQUEST }; 
+        const mockAction: AddItemRequest = {
+            type: ADD_ITEM_REQUEST,
+            payload: {
+                value: "mock value",
+            },
+        }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
@@ -199,7 +209,12 @@ describe("listReducer testing", () => {
     });
 
     test("#10 DELETE_ITEM_REQUEST", () => {
-        const mockAction: DeleteItemRequest = { type: DELETE_ITEM_REQUEST }; 
+        const mockAction: DeleteItemRequest = {
+            type: DELETE_ITEM_REQUEST,
+            payload: {
+                id: 1,
+            },
+        }; 
         const updatedState = listsReducer(initialState, mockAction); 
 
         expect(updatedState.pending).toBe(true);
