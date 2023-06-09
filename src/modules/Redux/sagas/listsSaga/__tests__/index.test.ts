@@ -29,7 +29,19 @@ import {
     postItem,
     deleteItem,
 } from "../../../apis/lists";
-import { ListItem } from "../../../actions/lists/types";
+import {
+    AddItemRequest,
+    FetchListRequest,
+    ListItem,
+    ToggleCompletionRequest,
+} from "../../../actions/lists/types";
+
+interface Api {
+  getList: (resource: string) => Promise<ListItem[]>;
+  patchList: (payload: ListItem) => Promise<ListItem[]>;
+  postItem: (payload: ListItem) => Promise<ListItem[]>;
+  deleteItem: (payload: number) => Promise<ListItem[]>;
+}
 
 const mockData = [
     {
@@ -50,8 +62,8 @@ const mockData = [
 ];
 
 describe("#1 fetchListSaga testing", () => {
-    function* mockSaga(api: unknown) {
-        const action = yield take(FETCH_LIST_REQUEST);
+    function* mockSaga(api: Api) {
+        const action: FetchListRequest = yield take(FETCH_LIST_REQUEST);
         const response: ListItem[] = yield call(api.getList, action.payload);
 
         yield put({
@@ -62,7 +74,7 @@ describe("#1 fetchListSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            getList: resource => ({ resource }),
+            getList: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
@@ -114,8 +126,8 @@ describe("#1 fetchListSaga testing", () => {
 });
 
 describe("#2 toggleCompletionSaga testing", () => {
-    function* mockSaga(api: unknown) {
-        const action = yield take(TOGGLE_COMPLETION_REQUEST);
+    function* mockSaga(api: Api) {
+        const action: ToggleCompletionRequest = yield take(TOGGLE_COMPLETION_REQUEST);
         const response: ListItem[] = yield call(api.patchList, action.payload);
 
         yield put({
@@ -126,7 +138,7 @@ describe("#2 toggleCompletionSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            patchList: resource => ({ resource }),
+            patchList: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
@@ -192,8 +204,8 @@ describe("#2 toggleCompletionSaga testing", () => {
 });
 
 describe("#3 addItemSaga testing", () => {
-    function* mockSaga(api: unknown) {
-        const action = yield take(ADD_ITEM_REQUEST);
+    function* mockSaga(api: Api) {
+        const action: AddItemRequest = yield take(ADD_ITEM_REQUEST);
         const response: ListItem[] = yield call(api.postItem, action.payload);
 
         yield put({
@@ -204,7 +216,7 @@ describe("#3 addItemSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            postItem: resource => ({ resource }),
+            postItem: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
@@ -270,7 +282,7 @@ describe("#3 addItemSaga testing", () => {
 });
 
 describe("#4 deleteItemSaga testing", () => {
-    function* mockSaga(api: unknown) {
+    function* mockSaga(api: Api) {
         const action = yield take(DELETE_ITEM_REQUEST);
         const response: ListItem[] = yield call(api.deleteItem, action.payload);
 
@@ -282,7 +294,7 @@ describe("#4 deleteItemSaga testing", () => {
 
     test("#1 mockSaga", () => {
         const api = {
-            deleteItem: resource => ({ resource }),
+            deleteItem: (resource: string) => ({ resource }),
         };
 
         return expectSaga(mockSaga, api)
