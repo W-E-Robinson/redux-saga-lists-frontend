@@ -37,17 +37,17 @@ import {
 } from "../../../actions/lists/types";
 
 interface Api {
-  getList: (resource: string) => Promise<ListItem[]>;
-  patchList: (payload: ListItem) => Promise<ListItem[]>;
-  postItem: (payload: ListItem) => Promise<ListItem[]>;
-  deleteItem: (payload: number) => Promise<ListItem[]>;
+    getList: () => Promise<ListItem[]>;
+    patchList: (payload: ListItem) => Promise<ListItem[]>;
+    postItem: (payload: ListItem) => Promise<ListItem[]>;
+    deleteItem: (payload: number) => Promise<ListItem[]>;
 }
 
 const mockData = [
     {
         "id": 1,
         "value": "take out the rubbish",
-        "completed": true, 
+        "completed": true,
     },
     {
         "id": 2,
@@ -64,7 +64,7 @@ const mockData = [
 describe("#1 fetchListSaga testing", () => {
     function* mockSaga(api: Api) {
         const action: FetchListRequest = yield take(FETCH_LIST_REQUEST);
-        const response: ListItem[] = yield call(api.getList, action.payload);
+        const response: ListItem[] = yield call(api.getList, action);
 
         yield put({
             type: FETCH_LIST_REQUEST,
@@ -119,7 +119,7 @@ describe("#1 fetchListSaga testing", () => {
         ));
         expect(generator.throw(response).value).toEqual(put(
             fetchListFailure({
-                error: response.message, 
+                error: response.message,
             })
         ));
     });
@@ -157,7 +157,7 @@ describe("#2 toggleCompletionSaga testing", () => {
         const mockAction = {
             type: TOGGLE_COMPLETION_REQUEST,
             payload: {
-                id : 1,
+                id: 1,
             },
         };
 
@@ -182,7 +182,7 @@ describe("#2 toggleCompletionSaga testing", () => {
         const mockAction = {
             type: TOGGLE_COMPLETION_REQUEST,
             payload: {
-                id : 1,
+                id: 1,
             },
         };
 
@@ -197,7 +197,7 @@ describe("#2 toggleCompletionSaga testing", () => {
         ));
         expect(generator.throw(response).value).toEqual(put(
             toggleCompletionFailure({
-                error: response.message, 
+                error: response.message,
             })
         ));
     });
@@ -275,7 +275,7 @@ describe("#3 addItemSaga testing", () => {
         ));
         expect(generator.throw(response).value).toEqual(put(
             addItemFailure({
-                error: response.message, 
+                error: response.message,
             })
         ));
     });
@@ -313,7 +313,7 @@ describe("#4 deleteItemSaga testing", () => {
         const mockAction = {
             type: DELETE_ITEM_REQUEST,
             payload: {
-                id : 1,
+                id: 1,
             },
         };
 
@@ -338,7 +338,7 @@ describe("#4 deleteItemSaga testing", () => {
         const mockAction = {
             type: DELETE_ITEM_REQUEST,
             payload: {
-                id : 1,
+                id: 1,
             },
         };
 
@@ -353,7 +353,7 @@ describe("#4 deleteItemSaga testing", () => {
         ));
         expect(generator.throw(response).value).toEqual(put(
             deleteItemFailure({
-                error: response.message, 
+                error: response.message,
             })
         ));
     });
